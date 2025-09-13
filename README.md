@@ -14,6 +14,18 @@ A simple webserver built with Lua as part of my journey to learn new languages b
 - Add, view, update, and delete todo items
 - Lightweight and easy to understand
 
+## Dependencies
+
+- [LuaSocket](https://lunarmodules.github.io/luasocket/) (`luarocks install luasocket`)
+- [dkjson](https://github.com/LuaDist/dkjson) (`luarocks install dkjson`)
+
+Install dependencies using [LuaRocks](https://luarocks.org/):
+
+```sh
+luarocks install luasocket
+luarocks install dkjson
+```
+
 ## Getting Started
 
 1. **Install Lua**  
@@ -25,13 +37,38 @@ A simple webserver built with Lua as part of my journey to learn new languages b
     cd lua-webserver
     ```
 
-3. **Run the server**  
+3. **Install dependencies**  
+    See [Dependencies](#dependencies) above.
+
+4. **Run the server**  
     ```sh
     lua server.lua
     ```
 
-4. **Open your browser**  
-    Visit `http://localhost:8080`
+5. **Open your browser**  
+    Visit `http://localhost:3000`
+
+## Testing with curl
+
+- **Get all todos**
+    ```sh
+    curl http://localhost:3000/todos
+    ```
+
+- **Add a todo**
+    ```sh
+    curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Buy milk\"}" http://localhost:3000/todos
+    ```
+
+- **Update a todo**
+    ```sh
+    curl -X PUT -H "Content-Type: application/json" -d "{\"id\":1,\"text\":\"Buy bread\",\"completed\":true}" http://localhost:3000/todos
+    ```
+
+- **Delete a todo**
+    ```sh
+    curl -X DELETE -H "Content-Type: application/json" -d "{\"id\":1}" http://localhost:3000/todos
+    ```
 
 ## Why Lua?
 
